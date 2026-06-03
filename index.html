@@ -100,6 +100,25 @@ strong{font-weight:700;color:var(--ink)}
 .cost-card.good .cost-num{color:var(--gold2)}
 .cost-text{font-size:.84rem;color:var(--ink3);margin-top:8px;line-height:1.5}
 
+/* OPENING SCENE + PRICE GAP */
+.scene{margin:6px 0 8px;position:relative;z-index:1}
+.scene-eyebrow{font-family:'Courier Prime',monospace;font-size:.66rem;text-transform:uppercase;letter-spacing:.2em;color:var(--gold);margin-bottom:10px}
+.scene-lead{font-family:'Playfair Display',Georgia,serif;font-size:clamp(1.5rem,4.2vw,2rem);font-weight:700;color:var(--ink);line-height:1.18;margin-bottom:14px}
+.gap2{margin:26px 0;padding:24px 22px;background:var(--panel-d);border:1px solid var(--line);position:relative;z-index:1}
+.gap2-title{font-family:'Courier Prime',monospace;font-size:.64rem;text-transform:uppercase;letter-spacing:.16em;color:var(--gold);margin-bottom:18px;text-align:center}
+.gap2-row{display:grid;grid-template-columns:120px 1fr;gap:14px;align-items:center;margin:12px 0}
+.gap2-lab{font-size:.82rem;color:var(--ink2);text-align:right;line-height:1.25}
+.gap2-lab span{display:block;font-family:'Courier Prime',monospace;font-size:.54rem;color:var(--ink4);text-transform:uppercase;letter-spacing:.06em;margin-top:3px}
+.gap2-track{position:relative;height:36px;background:rgba(255,255,255,.04);border:1px solid var(--line);overflow:hidden}
+.gap2-fill{position:absolute;left:0;top:0;bottom:0;width:0;transition:width 1.1s cubic-bezier(.2,.7,.2,1)}
+.gap2.in .gap2-fill{width:var(--w)}
+.gap2-fill.hi{background:linear-gradient(90deg,#C9A24B,#E6C77E)}
+.gap2-fill.lo{background:linear-gradient(90deg,#8f5740,#D08566)}
+.gap2-cut{position:absolute;right:10px;top:50%;transform:translateY(-50%);font-family:'Courier Prime',monospace;font-size:.56rem;color:var(--warn);text-transform:uppercase;letter-spacing:.06em;opacity:0;transition:opacity .5s ease .9s}
+.gap2.in .gap2-cut{opacity:.95}
+.gap2-note{font-size:.82rem;color:var(--ink3);margin-top:16px;line-height:1.5;border-top:1px solid var(--line);padding-top:13px}
+@media(max-width:700px){.gap2-row{grid-template-columns:92px 1fr}}
+
 /* INFOGRAPHICS */
 .fig{margin:30px 0;padding:24px 22px 18px;background:var(--panel-d);border:1px solid var(--line);position:relative;z-index:1}
 .fig-title{font-family:'Courier Prime',monospace;font-size:.64rem;text-transform:uppercase;letter-spacing:.16em;color:var(--gold);margin-bottom:14px;text-align:center}
@@ -214,13 +233,26 @@ strong{font-weight:700;color:var(--ink)}
   <div class="masthead-sub">Почему рост дохода каждый раз откатывается назад, и как перестроить биохимию тела, которая держит ваш денежный потолок. Книга-разбор живого эфира «Биохимия денег».</div>
 </div>
 
-<!-- HERO -->
-<div class="hero-img">
-  <img src="hero%20(1).jpg" alt="Механизмы сдвига">
+<!-- OPENING SCENE -->
+<div class="scene">
+  <div class="scene-eyebrow">Знакомый момент</div>
+  <p class="scene-lead">Вам нужно назвать свою цену.</p>
+  <p>Клиент ждёт, пауза висит, и вы слышите, как внутри что-то сжимается. В голове уже готова цифра, та, что справедлива. А вслух выходит другая, поменьше. «Ну, чтобы точно согласились.»</p>
 </div>
 
-<!-- HOOK -->
-<p>Знакомый момент. Вам нужно назвать свою цену. Клиент ждёт, пауза висит, и вы слышите, как внутри что-то сжимается. В голове уже готова цифра, та, что справедлива. А вслух выходит другая, поменьше. «Ну, чтобы точно согласились.»</p>
+<!-- GRAPHIC: разрыв цены -->
+<div class="gap2 reveal">
+  <div class="gap2-title">Что произошло за эту паузу</div>
+  <div class="gap2-row">
+    <div class="gap2-lab">В голове<span>справедливая цена</span></div>
+    <div class="gap2-track"><span class="gap2-fill hi" style="--w:100%"></span></div>
+  </div>
+  <div class="gap2-row">
+    <div class="gap2-lab">Вслух<span>чтобы точно согласились</span></div>
+    <div class="gap2-track"><span class="gap2-fill lo" style="--w:60%"></span><span class="gap2-cut">срезало тело</span></div>
+  </div>
+  <div class="gap2-note">Разрыв создаёт не расчёт, а тело: оно сжимается за доли секунды до того, как вы успели подумать.</div>
+</div>
 
 <p>Через секунду мозг подсовывает объяснение: рынок сложный, опыт ещё не тот. Звучит разумно. Только это не причина. Это <strong>оправдание для решения, которое тело уже приняло за вас</strong>.</p>
 
@@ -466,7 +498,7 @@ strong{font-weight:700;color:var(--ink)}
   <h2>«Механизмы сдвига»</h2>
   <div class="cta-price">690 &#8381;</div>
   <div class="cta-note">PDF &middot; 144 страницы &middot; премиальная вёрстка &middot; мгновенный доступ</div>
-  <a href="https://payform.ru/REPLACE/" class="cta-btn">Получить книгу &rarr;</a>
+  <a href="https://payform.ru/rabGrGB/" class="cta-btn">Получить книгу &rarr;</a>
   <div class="cta-sub">Один разбор того, что годами тянуло доход обратно вниз.</div>
 </div>
 
@@ -490,7 +522,7 @@ strong{font-weight:700;color:var(--ink)}
 <div class="pullquote">Потолок можно сдвинуть. Но не уговорами с собой, а через тело, которое его держит.</div>
 
 <p style="text-align:center;color:var(--ink3);font-size:.95rem">6 механизмов &middot; 4 архетипа &middot; протокол на 30 дней &middot; дневник наблюдений</p>
-<p style="text-align:center;margin:24px 0 8px"><a href="https://payform.ru/REPLACE/" class="cta-btn alt">Получить книгу: 690 &#8381;</a></p>
+<p style="text-align:center;margin:24px 0 8px"><a href="https://payform.ru/rabGrGB/" class="cta-btn alt">Получить книгу: 690 &#8381;</a></p>
 <p style="text-align:center;font-size:.72rem;color:var(--ink4);margin-top:14px">PDF &middot; Доступ навсегда &middot; Мгновенно</p>
 
 <div class="foot">
