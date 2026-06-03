@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Механизмы сдвига · Почему доход упирается в потолок и как его перенастроить</title>
+<meta name="description" content="Книга-разбор живого эфира «Биохимия денег». Почему рост дохода откатывается назад и как перенастроить тело, которое держит ваш денежный потолок. Шесть гормонов, четыре архетипа, протокол на 30 дней.">
+<meta property="og:title" content="Механизмы сдвига">
+<meta property="og:description" content="Почему доход упирается в невидимый потолок и как его перенастроить. Через тело, не через мысль.">
+<meta property="og:image" content="img/cover.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Manrope:wght@300;400;500;600;700;800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+:root{
+  --bg:#060f1d;          /* самый тёмный фон за столбцом */
+  --paper:#0d1d36;       /* основной navy лист */
+  --paper2:#102640;      /* чуть светлее для панелей */
+  --panel:rgba(255,255,255,.035);
+  --ink:#F2F6FC;         /* белые заголовки */
+  --ink2:#D2DEF1;        /* основной текст */
+  --ink3:#9DB1D2;        /* вторичный */
+  --ink4:#6E83A8;        /* тихие лейблы, колонтитулы */
+  --blue:#1E5BC6;        /* основной акцент книги */
+  --blue2:#4F8BF0;       /* светлый акцент */
+  --blue-dk:#163F8C;
+  --warn:#C9705A;        /* «до / цена незнания», тёплый сигнал, без зелёного */
+  --good:#5B9DF9;        /* «после / плюс», светло-синий */
+  --line:rgba(120,160,220,.14);
+  --line2:rgba(120,160,220,.08);
+}
+body{font-family:'Manrope',system-ui,sans-serif;background:var(--bg);color:var(--ink2);font-size:17px;line-height:1.78;-webkit-font-smoothing:antialiased}
+::selection{background:var(--blue);color:#fff}
+body::before{content:'';position:fixed;inset:0;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.04;pointer-events:none;z-index:10000;mix-blend-mode:overlay}
+
+.page{max-width:720px;margin:0 auto;padding:48px 40px 60px;
+  background:linear-gradient(150deg,#0e1f3a,#0a1830 55%,#0c1c38);
+  box-shadow:0 0 0 1px var(--line2), 0 30px 90px rgba(0,0,0,.5);
+  position:relative;overflow:hidden}
+.page::after{content:'';position:absolute;inset:0;background:radial-gradient(120% 60% at 50% -10%,rgba(40,90,180,.18),transparent 60%);pointer-events:none}
+
+/* MASTHEAD */
+.masthead{text-align:center;padding:18px 0 28px;border-bottom:3px double rgba(120,160,220,.32);margin-bottom:32px;position:relative;z-index:1}
+.masthead-edition{font-family:'Courier Prime',monospace;font-size:.66rem;color:var(--blue2);letter-spacing:.2em;text-transform:uppercase;margin-bottom:18px}
+.masthead h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(2.4rem,7vw,3.6rem);font-weight:900;line-height:1.05;color:var(--ink);margin-bottom:16px;letter-spacing:.01em}
+.masthead h1 em{font-style:italic;color:var(--blue2);font-weight:400}
+.masthead-sub{font-family:'Manrope',sans-serif;font-size:1.02rem;color:var(--ink3);max-width:540px;margin:0 auto;line-height:1.6}
+.masthead::after{content:'';display:block;width:100%;height:1px;background:rgba(120,160,220,.2);margin-top:26px}
+
+/* FOMO */
+.fomo{display:block;padding:12px 22px;background:rgba(30,91,198,.1);border:1px solid rgba(79,139,240,.28);font-family:'Courier Prime',monospace;font-size:.72rem;font-weight:700;color:var(--blue2);letter-spacing:.06em;text-transform:uppercase;margin:28px 0;text-align:center;line-height:1.6;position:relative;z-index:1}
+
+h2{font-family:'Playfair Display',Georgia,serif;font-size:clamp(1.4rem,3.6vw,1.75rem);font-weight:900;line-height:1.18;letter-spacing:.01em;margin:38px 0 18px;color:var(--ink);position:relative;z-index:1}
+h3{font-family:'Playfair Display',Georgia,serif;font-size:1.18rem;font-weight:700;margin:24px 0 12px;color:var(--ink);position:relative;z-index:1}
+p{margin-bottom:16px;text-align:left;position:relative;z-index:1}
+strong{font-weight:700;color:var(--ink)}
+.sep{width:54px;height:1px;background:linear-gradient(90deg,rgba(120,160,220,.5),transparent);margin:42px 0;position:relative;z-index:1}
+.file-tab{font-family:'Courier Prime',monospace;font-size:.68rem;text-transform:uppercase;letter-spacing:.18em;color:var(--blue2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:9px 0;margin:46px 0 20px;position:relative;z-index:1}
+.pullquote{border-top:2px solid rgba(120,160,220,.4);border-bottom:2px solid rgba(120,160,220,.4);padding:20px 0;margin:34px 0;text-align:center;font-family:'Playfair Display',Georgia,serif;font-size:1.28rem;font-weight:700;font-style:italic;line-height:1.42;color:var(--ink);position:relative;z-index:1}
+.voice{padding:18px 22px;background:rgba(30,91,198,.07);border-left:2px solid var(--blue);margin:16px 0;font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:1.05rem;line-height:1.65;color:var(--ink2);position:relative;z-index:1}
+.voice-attr{display:block;margin-top:8px;font-family:'Courier Prime',monospace;font-style:normal;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink4)}
+
+/* BOOK / PHOTO */
+.book-wrap{text-align:center;padding:0;margin:34px -40px;position:relative;z-index:1}
+.book-wrap img{width:100%;display:block}
+.photo{background:var(--panel);border:1px solid var(--line);padding:8px;margin:28px 0;position:relative;z-index:1}
+.photo img{width:100%;display:block}
+.photo-caption{font-family:'Courier Prime',monospace;font-size:.64rem;color:var(--ink4);text-transform:uppercase;letter-spacing:.1em;margin-top:8px;text-align:center}
+.hero-img{margin:0 -40px 32px;position:relative;z-index:1}
+.hero-img img{width:100%;display:block}
+
+/* COUNTERS */
+.counter-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:30px 0;position:relative;z-index:1}
+.counter{text-align:center;padding:24px 12px;background:var(--panel);border:1px solid var(--line)}
+.counter-num{font-family:'Playfair Display',Georgia,serif;font-size:2.6rem;font-weight:900;color:var(--blue2);line-height:1}
+.counter-label{font-family:'Courier Prime',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink4);margin-top:8px;line-height:1.5}
+
+/* COST */
+.cost-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0;position:relative;z-index:1}
+.cost-card{padding:22px 18px;text-align:center;border:1px solid var(--line);background:var(--panel)}
+.cost-card.bad{background:rgba(201,112,90,.08);border-color:rgba(201,112,90,.25)}
+.cost-card.good{background:rgba(30,91,198,.1);border-color:rgba(79,139,240,.3)}
+.cost-num{font-family:'Playfair Display',Georgia,serif;font-size:1.9rem;font-weight:900;line-height:1.05}
+.cost-card.bad .cost-num{color:var(--warn)}
+.cost-card.good .cost-num{color:var(--good)}
+.cost-text{font-size:.84rem;color:var(--ink3);margin-top:8px;line-height:1.5}
+
+/* PEEK */
+.peek{margin:32px 0;padding:30px 28px;background:var(--panel);border:1px solid var(--line);position:relative;z-index:1}
+.peek::before{content:'Страница из книги';position:absolute;top:-9px;left:22px;font-family:'Courier Prime',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.15em;color:var(--blue2);background:#0c1c38;padding:0 10px}
+.peek-signal{font-family:'Courier Prime',monospace;font-size:.68rem;font-weight:700;color:var(--blue2);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+.peek h4{font-family:'Playfair Display',Georgia,serif;font-size:1.25rem;font-weight:700;color:var(--ink);margin-bottom:12px}
+.peek p{font-size:.93rem;line-height:1.72;color:var(--ink2);margin-bottom:10px}
+.peek-blur{filter:blur(4.5px);user-select:none;pointer-events:none;opacity:.85}
+.peek-unlock{text-align:center;padding:14px 0 0;font-family:'Courier Prime',monospace;font-size:.7rem;font-weight:700;color:var(--blue2);letter-spacing:.08em}
+
+/* NOT IN BOOK */
+.not-list{margin:20px 0;font-size:.97rem;line-height:2.15;color:var(--ink3);position:relative;z-index:1}
+.not-list .x{color:var(--warn);font-weight:700;margin-right:10px}
+.not-list .v{color:var(--good);font-weight:700;margin-right:10px}
+
+/* FORMULA */
+.formula{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;padding:20px;background:var(--panel);border:1px solid var(--line);margin:24px 0;font-family:'Courier Prime',monospace;font-size:.76rem;font-weight:700;color:var(--ink2);position:relative;z-index:1}
+.f-arr{color:var(--blue2);font-size:1rem}
+
+/* SYSTEMS */
+.sys-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0;position:relative;z-index:1}
+.sys-card{padding:20px 22px;background:var(--panel);border:1px solid var(--line);transition:all .3s}
+.sys-card:hover{border-color:var(--blue);background:rgba(30,91,198,.08)}
+.sys-num{font-family:'Courier Prime',monospace;font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--blue2);margin-bottom:4px}
+.sys-name{font-family:'Playfair Display',Georgia,serif;font-size:1.15rem;font-weight:700;color:var(--ink);margin-bottom:6px}
+.sys-signals{font-size:.88rem;color:var(--ink3);line-height:1.55}
+.sys-meta{font-size:.72rem;color:var(--ink4);margin-top:8px;font-weight:600}
+.sys-card.hl{background:rgba(30,91,198,.12);border-color:rgba(79,139,240,.35)}
+.sys-card.hl:hover{border-color:var(--blue2)}
+
+/* INCLUDES */
+.inc-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:24px 0;position:relative;z-index:1}
+.inc-card{padding:20px 16px;background:var(--panel);border:1px solid var(--line);text-align:center}
+.inc-card h4{font-family:'Playfair Display',Georgia,serif;font-size:1.05rem;font-weight:700;color:var(--ink);margin-bottom:6px}
+.inc-card p{font-size:.82rem;color:var(--ink3);margin:0;line-height:1.5}
+
+/* BEFORE / AFTER */
+.ba{display:grid;grid-template-columns:1fr 1fr;margin:24px 0;border:1px solid var(--line);overflow:hidden;position:relative;z-index:1}
+.ba-side{padding:24px}
+.ba-side.before{background:rgba(201,112,90,.06)}
+.ba-side.after{background:rgba(30,91,198,.1)}
+.ba-label{font-family:'Courier Prime',monospace;font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px}
+.ba-side.before .ba-label{color:var(--warn)}
+.ba-side.after .ba-label{color:var(--good)}
+.ba-item{padding:11px 0;font-size:.92rem;line-height:1.55;color:var(--ink2);border-bottom:1px solid rgba(120,160,220,.08)}
+.ba-item:last-child{border:none}
+
+/* CTA */
+.cta-box{background:linear-gradient(140deg,#1E5BC6,#163F8C);color:#fff;padding:46px 40px;margin:42px -8px;text-align:center;position:relative;z-index:1;box-shadow:0 24px 60px rgba(20,50,120,.45)}
+.cta-box h2{color:#fff;margin-top:0;font-size:clamp(1.5rem,3.4vw,2rem)}
+.cta-price{font-family:'Playfair Display',Georgia,serif;font-size:3.4rem;font-weight:900;color:#fff;margin:14px 0 4px;line-height:1}
+.cta-note{font-size:.8rem;color:rgba(255,255,255,.62);margin-bottom:26px}
+.cta-btn{display:inline-block;padding:17px 46px;background:#fff;color:#16357a;font-family:'Courier Prime',monospace;font-size:.76rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:all .3s;border-radius:2px}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(0,0,0,.3)}
+.cta-sub{font-size:.72rem;color:rgba(255,255,255,.55);margin-top:16px}
+.cta-btn.alt{background:var(--blue);color:#fff}
+
+/* FAQ */
+.faq-item{border-bottom:1px solid var(--line);padding:16px 0;cursor:pointer;position:relative;z-index:1}
+.faq-q{font-family:'Playfair Display',Georgia,serif;font-size:1.08rem;font-weight:700;color:var(--ink);display:flex;justify-content:space-between;align-items:center;gap:16px}
+.faq-q::after{content:'+';font-size:1.3rem;color:var(--ink4);transition:transform .3s;flex:none}
+.faq-item.open .faq-q::after{transform:rotate(45deg);color:var(--blue2)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s}
+.faq-item.open .faq-a{max-height:260px}
+.faq-a p{padding-top:12px;font-size:.93rem;color:var(--ink3);line-height:1.7;margin:0}
+
+/* FOOT */
+.foot{text-align:center;padding:34px 0 4px;border-top:1px solid var(--line);margin-top:44px;font-family:'Courier Prime',monospace;font-size:.68rem;color:var(--ink4);line-height:2.2;position:relative;z-index:1}
+.foot a{color:var(--ink3);text-decoration:underline;text-underline-offset:2px}
+.foot a:hover{color:var(--blue2)}
+
+@media(max-width:700px){
+  .page{padding:28px 18px 48px}
+  body{font-size:16px}
+  .sys-grid,.ba,.inc-grid,.cost-grid{grid-template-columns:1fr}
+  .counter-row{grid-template-columns:1fr 1fr 1fr;gap:8px}
+  .counter-num{font-size:1.9rem}
+  .hero-img,.book-wrap{margin-left:-18px;margin-right:-18px}
+  .cta-box{padding:30px 22px;margin:36px 0}
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+<!-- MASTHEAD -->
+<div class="masthead">
+  <div class="masthead-edition">Для тех, у кого доход упирается в невидимый потолок</div>
+  <h1>Механизмы <em>сдвига</em></h1>
+  <div class="masthead-sub">Почему рост дохода каждый раз откатывается назад, и как перенастроить тело, которое держит ваш денежный потолок. Книга-разбор живого эфира «Биохимия денег».</div>
+</div>
+
+<!-- HERO -->
+<div class="hero-img">
+  <img src="img/hero.jpg" alt="Механизмы сдвига">
+</div>
+
+<!-- HOOK -->
+<p>Знакомый момент. Вам нужно назвать свою цену. Клиент ждёт, пауза висит, и вы слышите, как внутри что-то сжимается. В голове уже готова цифра, та, что справедлива. А вслух выходит другая, поменьше. «Ну, чтобы точно согласились.»</p>
+
+<p>Через секунду мозг подсовывает объяснение: рынок сложный, опыт ещё не тот. Звучит разумно. Только это не причина. Это <strong>оправдание для решения, которое тело уже приняло за вас</strong>.</p>
+
+<p>Поэтому годами можно читать книги, проходить курсы, разбирать установки, и всё равно в нужный момент рука сама пишет цену пониже. Не вы трус. Не вы ленивый. Так работает биохимия.</p>
+
+<div class="pullquote">А что, если всё это время решало не мышление, а тело? Каждый раз. За доли секунды до того, как вы успели подумать?</div>
+
+<div class="counter-row">
+  <div class="counter"><div class="counter-num">6</div><div class="counter-label">гормонов, которые<br>решают за вас</div></div>
+  <div class="counter"><div class="counter-num">4</div><div class="counter-label">денежных<br>архетипа</div></div>
+  <div class="counter"><div class="counter-num">30</div><div class="counter-label">дней, чтобы<br>сдвинуть потолок</div></div>
+</div>
+
+<div class="fomo">Те, кто прошли этот разбор, говорят одно: «Я годами работал не с тем. Я работал с головой, а держало тело.»</div>
+
+<div class="sep"></div>
+
+<!-- PROBLEM -->
+<div class="file-tab">Почему рост откатывается</div>
+
+<h2>Дело не в дисциплине и не в мышлении. Дело в настройке тела.</h2>
+
+<p>Вы делаете рывок. Хороший месяц, крупная сделка, премия. А через два-три месяца деньги снова на привычном уровне. Будто внутри есть планка, к которой всё возвращается само.</p>
+
+<p>Это не слабая воля и не «не та ниша». У тела есть привычный диапазон, и оно защищает его так же, как защищает температуру и вес. Любой выход за рамки тело читает как угрозу и тихо возвращает вас обратно. Через тревогу, через «надо перестраховаться», через цену пониже.</p>
+
+<div class="voice">«У вас есть внутри определённый уровень: мне можно вот столько. И тело очень аккуратно возвращает вас на него, что бы вы ни делали головой.»<span class="voice-attr">Из эфира «Биохимия денег»</span></div>
+
+<div class="voice">«Та самая история, когда люди выигрывают в лотерею. Они о ней всю жизнь мечтали. Выигрывают. И через год-два снова там, где были.»<span class="voice-attr">Из эфира «Биохимия денег»</span></div>
+
+<p>Финансовые данные это подтверждают. Исследование банкротств получателей крупных лотерейных выигрышей, опубликованное в Review of Economics and Statistics, показало: большая сумма не защищает от возврата вниз, а часто только отсрочивает его. Дело не в деньгах на счёте. Дело в том, что внутренняя планка осталась прежней.</p>
+
+<div class="pullquote">Вопрос не в том, умеете вы зарабатывать.<br>Вопрос в том, разрешает ли вам тело удержать заработанное.</div>
+
+<div class="sep"></div>
+
+<!-- COST -->
+<div class="file-tab">Цена незнания</div>
+
+<h2>Что происходит, пока вы работаете не с тем</h2>
+
+<div class="cost-grid">
+  <div class="cost-card bad"><div class="cost-num">350 мс</div><div class="cost-text">фора тела перед сознанием: столько проходит от телесной реакции до того, как вы решаете «осознанно» (Либет, 1985)</div></div>
+  <div class="cost-card bad"><div class="cost-num">2-3 мес</div><div class="cost-text">за столько новый, более высокий доход откатывается обратно к привычному уровню</div></div>
+  <div class="cost-card bad"><div class="cost-num">годы</div><div class="cost-text">на тренинги, установки и работу с мышлением, пока в нужный момент решает тело</div></div>
+  <div class="cost-card good"><div class="cost-num">1 490 ₽</div><div class="cost-text">стоимость книги, которая показывает, что именно держит потолок и как его перенастроить</div></div>
+</div>
+
+<p>Можно продолжать как раньше. Делать рывки и смотреть, как они откатываются. Менять ниши, тренеров и установки, пока тело тихо возвращает вас на старую планку.</p>
+
+<p>А можно за вечер чтения понять механизм, на который другие тратят годы.</p>
+
+<div class="voice">«Наш мозг очень сильно любит быть правым. Если вы внутри решили, что денег мало, он будет это подтверждать. И вопрос: вы хотите быть правым или свободным?»<span class="voice-attr">Из эфира «Биохимия денег»</span></div>
+
+<div class="sep"></div>
+
+<!-- IMAGINE -->
+<div class="file-tab">Другая логика</div>
+
+<h2>Представьте, что у вас есть карта собственного тела.</h2>
+
+<p>Вы открываете книгу. Находите своё состояние. Понимаете, какой гормон сейчас ведёт: кортизол держит вас в режиме выживания, дофамин выгорел и мир стал серым, серотонин занижает планку «сколько мне можно».</p>
+
+<p>И главное: вы видите, что с этим делать. Не «поверить в изобилие», а через тело сместить состояние за минуту перед сделкой. Не «заставить себя», а понять, почему тело сопротивляется, и убрать сопротивление.</p>
+
+<div class="fomo">После этой книги вы перестаёте воевать с собой. Вы понимаете механизм. И начинаете работать с телом, а не против него.</div>
+
+<!-- PEEK -->
+<div class="peek">
+  <div class="peek-signal">Глава 8</div>
+  <h4>Серотонин: сколько мне можно</h4>
+  <p><strong>Что задаёт:</strong> фоновое ощущение «сколько мне положено». Не сумму на счёте, а внутреннюю планку, ниже которой телу спокойно, а выше тревожно. Именно она тихо возвращает доход на привычный уровень.</p>
+  <p><strong>Что важно знать:</strong> около 90 процентов серотонина синтезируется в кишечнике, поэтому на него влияют свет, движение и микрофлора сильнее, чем любая аффирмация.</p>
+  <div class="peek-blur">
+    <p><strong>Как поднять планку:</strong> три ежедневных рычага, которые перенастраивают фон за недели, а не за один порыв. Первый: утренний свет в первые...</p>
+    <p><strong>Связь с другими механизмами:</strong> низкий серотонин усиливает кортизол и гасит дофамин, поэтому работать только с одним...</p>
+  </div>
+  <div class="peek-unlock">&darr; Полная глава в книге &darr;</div>
+</div>
+
+<!-- PHOTO: real page -->
+<div class="photo">
+  <img src="img/page-cortisol.jpg" alt="Разворот книги">
+  <div class="photo-caption">Каждый механизм разобран от живого тезиса до конкретной практики</div>
+</div>
+
+<div class="sep"></div>
+
+<!-- NOT IN BOOK -->
+<div class="file-tab">Честно</div>
+
+<h2>Чего в этой книге нет</h2>
+
+<div class="not-list">
+  <span class="x">&#10005;</span> Эзотерики, «энергий денег» и работы с «изобилием».<br>
+  <span class="x">&#10005;</span> Обещаний «разбогатеть за три дня» и гарантий дохода.<br>
+  <span class="x">&#10005;</span> Аффирмаций, которые не работают без чувства в теле.<br>
+  <span class="x">&#10005;</span> Воды, мотивационных лозунгов и «просто поверь в себя».<br><br>
+  <span class="v">&#10003;</span> <strong>Механизм:</strong> какие гормоны и почему держат ваш потолок.<br>
+  <span class="v">&#10003;</span> <strong>Практики через тело,</strong> которые меняют состояние, а не настроение.<br>
+  <span class="v">&#10003;</span> <strong>Протокол на 30 дней,</strong> потому что биохимия не перестраивается за вечер.
+</div>
+
+<div class="sep"></div>
+
+<!-- PRODUCT -->
+<div class="book-wrap">
+  <img src="img/cover.jpg" alt="Книга «Механизмы сдвига»" loading="lazy">
+</div>
+
+<div class="sep"></div>
+
+<!-- SYSTEMS -->
+<div class="file-tab">Шесть механизмов</div>
+
+<h2>Гормональный коктейль, который решает за вас</h2>
+
+<p>Тело не принимает денежных решений в одиночку. За них отвечает <strong>коктейль из шести гормонов</strong>. У каждого своя роль в деньгах и свой способ настройки. По тому, какой ведёт, складывается ваш денежный архетип.</p>
+
+<div class="formula">
+  <span>Тезис из эфира</span><span class="f-arr">&rarr;</span>
+  <span>Механизм в теле</span><span class="f-arr">&rarr;</span>
+  <span>Что включается</span><span class="f-arr">&rarr;</span>
+  <span>Практика</span>
+</div>
+
+<div class="sys-grid">
+  <div class="sys-card"><div class="sys-num">Механизм 1</div><div class="sys-name">Кортизол</div><div class="sys-signals">Тревога, режим выживания, цена пониже «на всякий случай»</div><div class="sys-meta">Отключает стратегический мозг</div></div>
+  <div class="sys-card"><div class="sys-num">Механизм 2</div><div class="sys-name">Тестостерон</div><div class="sys-signals">Способность заявить о себе и назвать цену прямо</div><div class="sys-meta">Эффект победителя</div></div>
+  <div class="sys-card"><div class="sys-num">Механизм 3</div><div class="sys-name">Дофамин</div><div class="sys-signals">Мотивация, предвкушение, радость от результата</div><div class="sys-meta">Когда выгорел, деньги «и что»</div></div>
+  <div class="sys-card"><div class="sys-num">Механизм 4</div><div class="sys-name">Серотонин</div><div class="sys-signals">Внутренняя планка «сколько мне можно»</div><div class="sys-meta">90% рождается в кишечнике</div></div>
+  <div class="sys-card"><div class="sys-num">Механизм 5</div><div class="sys-name">Окситоцин</div><div class="sys-signals">Доверие, близость, способность получать и брать</div><div class="sys-meta">Щедрость работает на вас</div></div>
+  <div class="sys-card"><div class="sys-num">Механизм 6</div><div class="sys-name">Глюкоза и инсулин</div><div class="sys-signals">Топливо для стратегических решений</div><div class="sys-meta">Стабильность важнее «одного сахара»</div></div>
+</div>
+
+<div class="sys-grid" style="grid-template-columns:1fr">
+  <div class="sys-card hl"><div class="sys-num">Часть III &middot; Ваш портрет</div><div class="sys-name">Четыре денежных архетипа</div><div class="sys-signals">Замороженный &middot; истощённый &middot; заякоренный &middot; закрытый. У большинства это коктейль из двух, но один всегда громче.</div><div class="sys-meta">Практика, которая показывает ваш ведущий механизм</div></div>
+</div>
+
+<!-- PHOTO: archetypes spread -->
+<div class="photo">
+  <img src="img/spread-archetypes.jpg" alt="Разворот про архетипы">
+  <div class="photo-caption">Четыре архетипа: как ведущий гормон формирует отношения с деньгами</div>
+</div>
+
+<div class="sep"></div>
+
+<!-- INCLUDES -->
+<div class="file-tab">Что внутри</div>
+
+<h2>Премиальный разбор на 74 страницы, а не очередной pdf-конспект</h2>
+
+<div class="inc-grid">
+  <div class="inc-card"><h4>20 глав</h4><p>От механизма в теле до конкретной практики</p></div>
+  <div class="inc-card"><h4>6 механизмов</h4><p>По главе на каждый гормон</p></div>
+  <div class="inc-card"><h4>4 архетипа</h4><p>И практика, чтобы найти свой</p></div>
+  <div class="inc-card"><h4>Протокол 30 дней</h4><p>Пошаговая перенастройка фона</p></div>
+  <div class="inc-card"><h4>Дневник наблюдений</h4><p>Чтобы замерить свой сдвиг</p></div>
+  <div class="inc-card"><h4>Источники</h4><p>Все исследования, на которые опирается книга</p></div>
+</div>
+
+<!-- PHOTO: mechanisms spread -->
+<div class="photo">
+  <img src="img/spread-mechanisms.jpg" alt="Разворот про шесть механизмов">
+  <div class="photo-caption">Часть II: шесть механизмов, по главе на каждый гормон</div>
+</div>
+
+<div class="sep"></div>
+
+<!-- BEFORE / AFTER -->
+<div class="file-tab">Развилка</div>
+
+<h2>Правым или свободным. Два способа жить с деньгами.</h2>
+
+<div class="ba">
+  <div class="ba-side before"><div class="ba-label">&#10005; Быть правым</div>
+    <div class="ba-item">Доказывать телу, что деньги достаются тяжело</div>
+    <div class="ba-item">Рывок, откат, и так по кругу годами</div>
+    <div class="ba-item">Тренинги и установки, а в моменте рука пишет цену пониже</div>
+    <div class="ba-item">Ждать прорыва, который всё изменит</div>
+    <div class="ba-item">Воевать с собой через силу воли</div>
+  </div>
+  <div class="ba-side after"><div class="ba-label">&#10003; Быть свободным</div>
+    <div class="ba-item">Видеть, что решает тело, а не характер</div>
+    <div class="ba-item">Знать свой ведущий гормон и архетип</div>
+    <div class="ba-item">Менять состояние за минуту перед сделкой</div>
+    <div class="ba-item">30 дней рутины вместо погони за инсайтом</div>
+    <div class="ba-item">Работать с телом, а не против него</div>
+  </div>
+</div>
+
+<div class="fomo">Разница не в интеллекте и не в нише. Разница в том, с чем вы работаете: с мыслью или с телом, которое решает раньше неё.</div>
+
+<!-- PHOTO: practice spread -->
+<div class="photo">
+  <img src="img/spread-practice.jpg" alt="Разворот про практики">
+  <div class="photo-caption">Часть IV: практики, которые меняют состояние через тело</div>
+</div>
+
+<div class="sep"></div>
+
+<!-- CTA 1 -->
+<!-- TODO: заменить цену и ссылку payform на реальные -->
+<div class="cta-box">
+  <h2>«Механизмы сдвига»</h2>
+  <div class="cta-price">1 490 &#8381;</div>
+  <div class="cta-note">PDF &middot; 74 страницы &middot; премиальная вёрстка &middot; мгновенный доступ</div>
+  <a href="https://payform.ru/REPLACE/" class="cta-btn">Получить книгу &rarr;</a>
+  <div class="cta-sub">Один разбор того, что годами тянуло доход обратно вниз.</div>
+</div>
+
+<div class="sep"></div>
+
+<!-- FAQ -->
+<div class="file-tab">Вопросы</div>
+
+<h2>Всё, что вы хотите знать</h2>
+
+<div class="faq-item"><div class="faq-q">Это эзотерика или коучинг?</div><div class="faq-a"><p>Нет. В основе нейробиология и эндокринология: кортизол, дофамин, серотонин, окситоцин, работы Либета, Коатса, Брикмана и других. Образы из эфира, рядом разбор, как это устроено в теле, и практики.</p></div></div>
+<div class="faq-item"><div class="faq-q">Я не разбираюсь в биологии. Пойму?</div><div class="faq-a"><p>Да. Написано простым языком, термины объясняются по ходу, в конце есть глоссарий. Если вы читаете этот текст, книгу поймёте.</p></div></div>
+<div class="faq-item"><div class="faq-q">Это гарантия роста дохода?</div><div class="faq-a"><p>Нет. Это образовательный материал для работы с собой, а не гарантия дохода и не медицинские назначения. Книга даёт механизм и практики, результат зависит от регулярности.</p></div></div>
+<div class="faq-item"><div class="faq-q">Чем это отличается от книг про мышление изобилия?</div><div class="faq-a"><p>Те работают с мыслью. Здесь работа с телом и гормонами, которые принимают решение раньше мысли. Поэтому практики не про «поверить», а про то, что физически включается в теле.</p></div></div>
+<div class="faq-item"><div class="faq-q">Это только для предпринимателей?</div><div class="faq-a"><p>Нет. Механизмы денежного потолка одинаковы у фрилансера, наёмного специалиста и владельца бизнеса. Практики универсальны.</p></div></div>
+<div class="faq-item"><div class="faq-q">Когда получу?</div><div class="faq-a"><p>Мгновенно. Ссылка на скачивание приходит сразу после оплаты. PDF открывается на любом устройстве, доступ навсегда.</p></div></div>
+
+<div class="sep"></div>
+
+<!-- FINAL -->
+<div class="pullquote">Потолок можно сдвинуть. Но не уговорами с собой, а через тело, которое его держит.</div>
+
+<p style="text-align:center;color:var(--ink3);font-size:.95rem">6 механизмов &middot; 4 архетипа &middot; протокол на 30 дней &middot; дневник наблюдений</p>
+<p style="text-align:center;margin:24px 0 8px"><a href="https://payform.ru/REPLACE/" class="cta-btn alt">Получить книгу: 1 490 &#8381;</a></p>
+<p style="text-align:center;font-size:.72rem;color:var(--ink4);margin-top:14px">PDF &middot; Доступ навсегда &middot; Мгновенно</p>
+
+<div class="foot">
+  <p>&copy; 2026 Архитектура Сознания</p>
+  <p>ИП Ростовцева Дарья Валерьевна &middot; ИНН: 241103415641</p>
+  <p><a href="https://t.me/+aEgupwOOOq84YTNi">Telegram</a> &middot; <a href="https://instagram.com/thebodymindcode">Instagram</a> &middot; <a href="https://t.me/TheBodyMindCode_support">Поддержка</a></p>
+  <p style="margin-top:8px;font-size:.58rem;opacity:.6">Книга является образовательным материалом и не заменяет консультацию специалиста. Не является гарантией дохода.</p>
+</div>
+
+</div>
+
+<script>
+document.querySelectorAll('.faq-item').forEach(item=>{
+  item.querySelector('.faq-q').addEventListener('click',()=>{
+    const wasOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(x=>x.classList.remove('open'));
+    if(!wasOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>
