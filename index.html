@@ -15,156 +15,191 @@
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 :root{
-  --bg:#060f1d;          /* самый тёмный фон за столбцом */
-  --paper:#0d1d36;       /* основной navy лист */
-  --paper2:#102640;      /* чуть светлее для панелей */
-  --panel:rgba(255,255,255,.035);
-  --ink:#F2F6FC;         /* белые заголовки */
-  --ink2:#D2DEF1;        /* основной текст */
-  --ink3:#9DB1D2;        /* вторичный */
-  --ink4:#6E83A8;        /* тихие лейблы, колонтитулы */
-  --blue:#1E5BC6;        /* основной акцент книги */
-  --blue2:#4F8BF0;       /* светлый акцент */
+  --bg:#060f1d;
+  --paper:#0d1d36;
+  --paper2:#102640;
+  --panel:rgba(255,255,255,.04);
+  --panel-d:rgba(4,10,22,.5);
+  --ink:#F4F7FC;
+  --ink2:#D2DEF1;
+  --ink3:#9DB1D2;
+  --ink4:#6E83A8;
+  --blue:#1E5BC6;
+  --blue2:#4F8BF0;
   --blue-dk:#163F8C;
-  --warn:#C9705A;        /* «до / цена незнания», тёплый сигнал, без зелёного */
-  --good:#5B9DF9;        /* «после / плюс», светло-синий */
-  --line:rgba(120,160,220,.14);
-  --line2:rgba(120,160,220,.08);
+  --gold:#C9A24B;        /* основной тёплый акцент, из открытий частей книги */
+  --gold2:#E6C77E;       /* светлое золото */
+  --gold-soft:rgba(201,162,75,.16);
+  --warn:#D08566;        /* тёплый сигнал «до», без зелёного */
+  --line:rgba(150,185,235,.13);
+  --line2:rgba(150,185,235,.07);
+  --gline:rgba(201,162,75,.28);
 }
 body{font-family:'Manrope',system-ui,sans-serif;background:var(--bg);color:var(--ink2);font-size:17px;line-height:1.78;-webkit-font-smoothing:antialiased}
-::selection{background:var(--blue);color:#fff}
+::selection{background:var(--gold);color:#10203a}
 body::before{content:'';position:fixed;inset:0;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.04;pointer-events:none;z-index:10000;mix-blend-mode:overlay}
 
 .page{max-width:720px;margin:0 auto;padding:48px 40px 60px;
   background:linear-gradient(150deg,#0e1f3a,#0a1830 55%,#0c1c38);
-  box-shadow:0 0 0 1px var(--line2), 0 30px 90px rgba(0,0,0,.5);
+  box-shadow:0 0 0 1px var(--line2),0 30px 90px rgba(0,0,0,.55);
   position:relative;overflow:hidden}
-.page::after{content:'';position:absolute;inset:0;background:radial-gradient(120% 60% at 50% -10%,rgba(40,90,180,.18),transparent 60%);pointer-events:none}
+.page::after{content:'';position:absolute;inset:0;background:radial-gradient(120% 55% at 50% -8%,rgba(40,90,180,.16),transparent 60%);pointer-events:none}
+
+/* reveal on scroll */
+.js .reveal{opacity:0;transform:translateY(20px);transition:opacity .75s ease,transform .75s cubic-bezier(.2,.7,.2,1)}
+.js .reveal.in{opacity:1;transform:none}
 
 /* MASTHEAD */
-.masthead{text-align:center;padding:18px 0 28px;border-bottom:3px double rgba(120,160,220,.32);margin-bottom:32px;position:relative;z-index:1}
-.masthead-edition{font-family:'Courier Prime',monospace;font-size:.66rem;color:var(--blue2);letter-spacing:.2em;text-transform:uppercase;margin-bottom:18px}
-.masthead h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(2.4rem,7vw,3.6rem);font-weight:900;line-height:1.05;color:var(--ink);margin-bottom:16px;letter-spacing:.01em}
-.masthead h1 em{font-style:italic;color:var(--blue2);font-weight:400}
+.masthead{text-align:center;padding:18px 0 30px;border-bottom:1px solid var(--gline);margin-bottom:32px;position:relative;z-index:1}
+.masthead-edition{font-family:'Courier Prime',monospace;font-size:.66rem;color:var(--gold);letter-spacing:.22em;text-transform:uppercase;margin-bottom:20px}
+.masthead-edition::before,.masthead-edition::after{content:'';display:inline-block;width:26px;height:1px;background:var(--gline);vertical-align:middle;margin:0 12px}
+.masthead h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(2.4rem,7vw,3.7rem);font-weight:900;line-height:1.04;color:var(--ink);margin-bottom:18px;letter-spacing:.01em}
+.masthead h1 em{font-style:italic;color:var(--gold2);font-weight:400}
 .masthead-sub{font-family:'Manrope',sans-serif;font-size:1.02rem;color:var(--ink3);max-width:540px;margin:0 auto;line-height:1.6}
-.masthead::after{content:'';display:block;width:100%;height:1px;background:rgba(120,160,220,.2);margin-top:26px}
 
 /* FOMO */
-.fomo{display:block;padding:12px 22px;background:rgba(30,91,198,.1);border:1px solid rgba(79,139,240,.28);font-family:'Courier Prime',monospace;font-size:.72rem;font-weight:700;color:var(--blue2);letter-spacing:.06em;text-transform:uppercase;margin:28px 0;text-align:center;line-height:1.6;position:relative;z-index:1}
+.fomo{display:block;padding:16px 24px;background:var(--panel-d);border:1px solid var(--gline);border-left:3px solid var(--gold);font-family:'Manrope',sans-serif;font-size:.96rem;font-weight:500;color:var(--ink2);margin:30px 0;text-align:left;line-height:1.6;position:relative;z-index:1}
 
-h2{font-family:'Playfair Display',Georgia,serif;font-size:clamp(1.4rem,3.6vw,1.75rem);font-weight:900;line-height:1.18;letter-spacing:.01em;margin:38px 0 18px;color:var(--ink);position:relative;z-index:1}
+h2{font-family:'Playfair Display',Georgia,serif;font-size:clamp(1.45rem,3.7vw,1.8rem);font-weight:900;line-height:1.16;letter-spacing:.01em;margin:38px 0 18px;color:var(--ink);position:relative;z-index:1}
 h3{font-family:'Playfair Display',Georgia,serif;font-size:1.18rem;font-weight:700;margin:24px 0 12px;color:var(--ink);position:relative;z-index:1}
 p{margin-bottom:16px;text-align:left;position:relative;z-index:1}
 strong{font-weight:700;color:var(--ink)}
-.sep{width:54px;height:1px;background:linear-gradient(90deg,rgba(120,160,220,.5),transparent);margin:42px 0;position:relative;z-index:1}
-.file-tab{font-family:'Courier Prime',monospace;font-size:.68rem;text-transform:uppercase;letter-spacing:.18em;color:var(--blue2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:9px 0;margin:46px 0 20px;position:relative;z-index:1}
-.pullquote{border-top:2px solid rgba(120,160,220,.4);border-bottom:2px solid rgba(120,160,220,.4);padding:20px 0;margin:34px 0;text-align:center;font-family:'Playfair Display',Georgia,serif;font-size:1.28rem;font-weight:700;font-style:italic;line-height:1.42;color:var(--ink);position:relative;z-index:1}
-.voice{padding:18px 22px;background:rgba(30,91,198,.07);border-left:2px solid var(--blue);margin:16px 0;font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:1.05rem;line-height:1.65;color:var(--ink2);position:relative;z-index:1}
-.voice-attr{display:block;margin-top:8px;font-family:'Courier Prime',monospace;font-style:normal;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink4)}
+.sep{width:60px;height:1px;background:linear-gradient(90deg,var(--gold),transparent);margin:44px 0;position:relative;z-index:1}
+.file-tab{font-family:'Courier Prime',monospace;font-size:.68rem;text-transform:uppercase;letter-spacing:.2em;color:var(--gold);padding:9px 0;margin:48px 0 20px;position:relative;z-index:1;border-bottom:1px solid var(--gline)}
+.file-tab::before{content:'\25C6';font-size:.5rem;margin-right:10px;color:var(--gold);vertical-align:middle}
+.pullquote{border-top:1px solid var(--gline);border-bottom:1px solid var(--gline);padding:24px 10px;margin:36px 0;text-align:center;font-family:'Playfair Display',Georgia,serif;font-size:1.32rem;font-weight:700;font-style:italic;line-height:1.42;color:var(--ink);position:relative;z-index:1}
+.pullquote::before{content:'\201C';position:absolute;top:2px;left:50%;transform:translateX(-50%);font-family:'Playfair Display',serif;font-size:2.4rem;color:var(--gold);opacity:.5;line-height:1}
+.voice{padding:18px 24px;background:var(--panel);border-left:2px solid var(--gold);margin:16px 0;font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:1.06rem;line-height:1.65;color:var(--ink2);position:relative;z-index:1}
+.voice-attr{display:block;margin-top:8px;font-family:'Courier Prime',monospace;font-style:normal;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);opacity:.8}
 
 /* BOOK / PHOTO */
-.book-wrap{text-align:center;padding:0;margin:34px -40px;position:relative;z-index:1}
+.book-wrap{text-align:center;margin:34px -40px;position:relative;z-index:1}
 .book-wrap img{width:100%;display:block}
-.photo{background:var(--panel);border:1px solid var(--line);padding:8px;margin:28px 0;position:relative;z-index:1}
+.photo{background:var(--panel);border:1px solid var(--line);padding:8px;margin:28px 0;position:relative;z-index:1;box-shadow:0 14px 40px rgba(0,0,0,.35)}
+.photo::after{content:'';position:absolute;inset:0;border:1px solid var(--gline);margin:3px;pointer-events:none}
 .photo img{width:100%;display:block}
-.photo-caption{font-family:'Courier Prime',monospace;font-size:.64rem;color:var(--ink4);text-transform:uppercase;letter-spacing:.1em;margin-top:8px;text-align:center}
-.hero-img{margin:0 -40px 32px;position:relative;z-index:1}
+.photo-caption{font-family:'Courier Prime',monospace;font-size:.64rem;color:var(--ink4);text-transform:uppercase;letter-spacing:.1em;margin-top:10px;text-align:center}
+.hero-img{margin:0 -40px 32px;position:relative;z-index:1;overflow:hidden}
 .hero-img img{width:100%;display:block}
+.hero-img::after{content:'';position:absolute;inset:0;background:radial-gradient(60% 120% at 50% 0%,rgba(201,162,75,.12),transparent 55%);mix-blend-mode:screen;animation:aurora 9s ease-in-out infinite alternate;pointer-events:none}
+@keyframes aurora{from{opacity:.5;transform:translateY(-4%)}to{opacity:.95;transform:translateY(2%)}}
 
 /* COUNTERS */
 .counter-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:30px 0;position:relative;z-index:1}
-.counter{text-align:center;padding:24px 12px;background:var(--panel);border:1px solid var(--line)}
-.counter-num{font-family:'Playfair Display',Georgia,serif;font-size:2.6rem;font-weight:900;color:var(--blue2);line-height:1}
-.counter-label{font-family:'Courier Prime',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink4);margin-top:8px;line-height:1.5}
+.counter{text-align:center;padding:26px 12px;background:var(--panel);border:1px solid var(--line);box-shadow:inset 0 1px 0 var(--gold-soft)}
+.counter-num{font-family:'Playfair Display',Georgia,serif;font-size:2.7rem;font-weight:900;color:var(--gold2);line-height:1}
+.counter-label{font-family:'Courier Prime',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink4);margin-top:10px;line-height:1.5}
 
 /* COST */
 .cost-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0;position:relative;z-index:1}
-.cost-card{padding:22px 18px;text-align:center;border:1px solid var(--line);background:var(--panel)}
-.cost-card.bad{background:rgba(201,112,90,.08);border-color:rgba(201,112,90,.25)}
-.cost-card.good{background:rgba(30,91,198,.1);border-color:rgba(79,139,240,.3)}
-.cost-num{font-family:'Playfair Display',Georgia,serif;font-size:1.9rem;font-weight:900;line-height:1.05}
+.cost-card{padding:24px 18px;text-align:center;border:1px solid var(--line);background:var(--panel)}
+.cost-card.bad{background:rgba(208,133,102,.07);border-color:rgba(208,133,102,.22)}
+.cost-card.good{background:var(--gold-soft);border-color:var(--gline);box-shadow:inset 0 1px 0 rgba(230,199,126,.3)}
+.cost-num{font-family:'Playfair Display',Georgia,serif;font-size:2rem;font-weight:900;line-height:1.05}
 .cost-card.bad .cost-num{color:var(--warn)}
-.cost-card.good .cost-num{color:var(--good)}
+.cost-card.good .cost-num{color:var(--gold2)}
 .cost-text{font-size:.84rem;color:var(--ink3);margin-top:8px;line-height:1.5}
 
+/* INFOGRAPHICS */
+.fig{margin:30px 0;padding:24px 22px 18px;background:var(--panel-d);border:1px solid var(--line);position:relative;z-index:1}
+.fig-title{font-family:'Courier Prime',monospace;font-size:.64rem;text-transform:uppercase;letter-spacing:.16em;color:var(--gold);margin-bottom:14px;text-align:center}
+.fig svg{width:100%;height:auto;display:block}
+.fig .ln{stroke-dasharray:900;stroke-dashoffset:900;transition:stroke-dashoffset 1.4s ease}
+.fig.in .ln{stroke-dashoffset:0}
+.fig .fade{opacity:0;transition:opacity .7s ease}
+.fig.in .fade{opacity:1}
+.fig.in .s1{transition-delay:.35s}.fig.in .s2{transition-delay:.7s}.fig.in .s3{transition-delay:1.05s}.fig.in .s4{transition-delay:1.3s}
+.fig-cap{font-size:.8rem;color:var(--ink3);text-align:center;margin-top:12px;line-height:1.5}
+
 /* PEEK */
-.peek{margin:32px 0;padding:30px 28px;background:var(--panel);border:1px solid var(--line);position:relative;z-index:1}
-.peek::before{content:'Страница из книги';position:absolute;top:-9px;left:22px;font-family:'Courier Prime',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.15em;color:var(--blue2);background:#0c1c38;padding:0 10px}
-.peek-signal{font-family:'Courier Prime',monospace;font-size:.68rem;font-weight:700;color:var(--blue2);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
-.peek h4{font-family:'Playfair Display',Georgia,serif;font-size:1.25rem;font-weight:700;color:var(--ink);margin-bottom:12px}
+.peek{margin:32px 0;padding:32px 28px;background:var(--panel);border:1px solid var(--gline);position:relative;z-index:1}
+.peek::before{content:'Страница из книги';position:absolute;top:-9px;left:22px;font-family:'Courier Prime',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.15em;color:var(--gold);background:#0c1c38;padding:0 10px}
+.peek-signal{font-family:'Courier Prime',monospace;font-size:.68rem;font-weight:700;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+.peek h4{font-family:'Playfair Display',Georgia,serif;font-size:1.3rem;font-weight:700;color:var(--ink);margin-bottom:12px}
 .peek p{font-size:.93rem;line-height:1.72;color:var(--ink2);margin-bottom:10px}
-.peek-blur{filter:blur(4.5px);user-select:none;pointer-events:none;opacity:.85}
-.peek-unlock{text-align:center;padding:14px 0 0;font-family:'Courier Prime',monospace;font-size:.7rem;font-weight:700;color:var(--blue2);letter-spacing:.08em}
+.peek-blur{filter:blur(4.5px);user-select:none;pointer-events:none;opacity:.8}
+.peek-unlock{text-align:center;padding:14px 0 0;font-family:'Courier Prime',monospace;font-size:.7rem;font-weight:700;color:var(--gold);letter-spacing:.08em}
 
 /* NOT IN BOOK */
 .not-list{margin:20px 0;font-size:.97rem;line-height:2.15;color:var(--ink3);position:relative;z-index:1}
 .not-list .x{color:var(--warn);font-weight:700;margin-right:10px}
-.not-list .v{color:var(--good);font-weight:700;margin-right:10px}
+.not-list .v{color:var(--gold2);font-weight:700;margin-right:10px}
 
 /* FORMULA */
-.formula{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;padding:20px;background:var(--panel);border:1px solid var(--line);margin:24px 0;font-family:'Courier Prime',monospace;font-size:.76rem;font-weight:700;color:var(--ink2);position:relative;z-index:1}
-.f-arr{color:var(--blue2);font-size:1rem}
+.formula{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;padding:20px;background:var(--panel-d);border:1px solid var(--line);margin:24px 0;font-family:'Courier Prime',monospace;font-size:.74rem;font-weight:700;color:var(--ink2);letter-spacing:.04em;text-transform:uppercase;position:relative;z-index:1}
+.f-arr{color:var(--gold);font-size:1rem}
 
 /* SYSTEMS */
 .sys-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0;position:relative;z-index:1}
-.sys-card{padding:20px 22px;background:var(--panel);border:1px solid var(--line);transition:all .3s}
-.sys-card:hover{border-color:var(--blue);background:rgba(30,91,198,.08)}
-.sys-num{font-family:'Courier Prime',monospace;font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--blue2);margin-bottom:4px}
-.sys-name{font-family:'Playfair Display',Georgia,serif;font-size:1.15rem;font-weight:700;color:var(--ink);margin-bottom:6px}
+.sys-card{padding:22px 22px;background:var(--panel);border:1px solid var(--line);transition:border-color .3s,background .3s,transform .3s;position:relative}
+.sys-card:hover{border-color:var(--gold);background:var(--gold-soft);transform:translateY(-3px)}
+.sys-ico{display:block;width:30px;height:30px;margin-bottom:12px}
+.sys-ico svg{width:100%;height:100%;display:block;stroke:var(--gold);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.sys-num{font-family:'Courier Prime',monospace;font-size:.58rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);opacity:.85;margin-bottom:4px}
+.sys-name{font-family:'Playfair Display',Georgia,serif;font-size:1.16rem;font-weight:700;color:var(--ink);margin-bottom:6px}
 .sys-signals{font-size:.88rem;color:var(--ink3);line-height:1.55}
 .sys-meta{font-size:.72rem;color:var(--ink4);margin-top:8px;font-weight:600}
-.sys-card.hl{background:rgba(30,91,198,.12);border-color:rgba(79,139,240,.35)}
-.sys-card.hl:hover{border-color:var(--blue2)}
+.sys-card.hl{background:var(--gold-soft);border-color:var(--gline)}
+.sys-card.hl:hover{border-color:var(--gold2)}
 
 /* INCLUDES */
 .inc-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:24px 0;position:relative;z-index:1}
-.inc-card{padding:20px 16px;background:var(--panel);border:1px solid var(--line);text-align:center}
-.inc-card h4{font-family:'Playfair Display',Georgia,serif;font-size:1.05rem;font-weight:700;color:var(--ink);margin-bottom:6px}
+.inc-card{padding:22px 16px;background:var(--panel);border:1px solid var(--line);text-align:center;box-shadow:inset 0 1px 0 var(--gold-soft)}
+.inc-card h4{font-family:'Playfair Display',Georgia,serif;font-size:1.06rem;font-weight:700;color:var(--gold2);margin-bottom:6px}
 .inc-card p{font-size:.82rem;color:var(--ink3);margin:0;line-height:1.5}
 
 /* BEFORE / AFTER */
 .ba{display:grid;grid-template-columns:1fr 1fr;margin:24px 0;border:1px solid var(--line);overflow:hidden;position:relative;z-index:1}
-.ba-side{padding:24px}
-.ba-side.before{background:rgba(201,112,90,.06)}
+.ba-side{padding:26px}
+.ba-side.before{background:rgba(208,133,102,.06)}
 .ba-side.after{background:rgba(30,91,198,.1)}
+.ba-side+.ba-side{border-left:1px solid var(--line)}
 .ba-label{font-family:'Courier Prime',monospace;font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px}
 .ba-side.before .ba-label{color:var(--warn)}
-.ba-side.after .ba-label{color:var(--good)}
-.ba-item{padding:11px 0;font-size:.92rem;line-height:1.55;color:var(--ink2);border-bottom:1px solid rgba(120,160,220,.08)}
+.ba-side.after .ba-label{color:var(--blue2)}
+.ba-item{padding:11px 0;font-size:.92rem;line-height:1.55;color:var(--ink2);border-bottom:1px solid rgba(150,185,235,.08)}
 .ba-item:last-child{border:none}
 
 /* CTA */
-.cta-box{background:linear-gradient(140deg,#1E5BC6,#163F8C);color:#fff;padding:46px 40px;margin:42px -8px;text-align:center;position:relative;z-index:1;box-shadow:0 24px 60px rgba(20,50,120,.45)}
+.cta-box{background:linear-gradient(140deg,#1E5BC6,#11264f);color:#fff;padding:48px 40px;margin:44px -8px;text-align:center;position:relative;z-index:1;box-shadow:0 24px 60px rgba(20,50,120,.45);border:1px solid var(--gline)}
+.cta-box::before{content:'';position:absolute;inset:0;background:radial-gradient(80% 60% at 50% 0%,rgba(201,162,75,.18),transparent 60%);pointer-events:none}
 .cta-box h2{color:#fff;margin-top:0;font-size:clamp(1.5rem,3.4vw,2rem)}
-.cta-price{font-family:'Playfair Display',Georgia,serif;font-size:3.4rem;font-weight:900;color:#fff;margin:14px 0 4px;line-height:1}
-.cta-note{font-size:.8rem;color:rgba(255,255,255,.62);margin-bottom:26px}
-.cta-btn{display:inline-block;padding:17px 46px;background:#fff;color:#16357a;font-family:'Courier Prime',monospace;font-size:.76rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:all .3s;border-radius:2px}
-.cta-btn:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(0,0,0,.3)}
-.cta-sub{font-size:.72rem;color:rgba(255,255,255,.55);margin-top:16px}
-.cta-btn.alt{background:var(--blue);color:#fff}
+.cta-price{font-family:'Playfair Display',Georgia,serif;font-size:3.5rem;font-weight:900;color:var(--gold2);margin:14px 0 4px;line-height:1}
+.cta-note{font-size:.8rem;color:rgba(255,255,255,.66);margin-bottom:26px}
+.cta-btn{display:inline-block;padding:18px 48px;background:var(--gold);color:#16223e;font-family:'Courier Prime',monospace;font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:transform .3s,box-shadow .3s;border-radius:2px}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(0,0,0,.35)}
+.cta-sub{font-size:.72rem;color:rgba(255,255,255,.6);margin-top:16px}
+.cta-btn.alt{background:var(--gold);color:#16223e}
 
 /* FAQ */
 .faq-item{border-bottom:1px solid var(--line);padding:16px 0;cursor:pointer;position:relative;z-index:1}
 .faq-q{font-family:'Playfair Display',Georgia,serif;font-size:1.08rem;font-weight:700;color:var(--ink);display:flex;justify-content:space-between;align-items:center;gap:16px}
-.faq-q::after{content:'+';font-size:1.3rem;color:var(--ink4);transition:transform .3s;flex:none}
-.faq-item.open .faq-q::after{transform:rotate(45deg);color:var(--blue2)}
+.faq-q::after{content:'+';font-size:1.3rem;color:var(--gold);transition:transform .3s;flex:none}
+.faq-item.open .faq-q::after{transform:rotate(45deg)}
 .faq-a{max-height:0;overflow:hidden;transition:max-height .4s}
-.faq-item.open .faq-a{max-height:260px}
+.faq-item.open .faq-a{max-height:280px}
 .faq-a p{padding-top:12px;font-size:.93rem;color:var(--ink3);line-height:1.7;margin:0}
 
 /* FOOT */
-.foot{text-align:center;padding:34px 0 4px;border-top:1px solid var(--line);margin-top:44px;font-family:'Courier Prime',monospace;font-size:.68rem;color:var(--ink4);line-height:2.2;position:relative;z-index:1}
+.foot{text-align:center;padding:34px 0 4px;border-top:1px solid var(--gline);margin-top:44px;font-family:'Courier Prime',monospace;font-size:.68rem;color:var(--ink4);line-height:2.2;position:relative;z-index:1}
 .foot a{color:var(--ink3);text-decoration:underline;text-underline-offset:2px}
-.foot a:hover{color:var(--blue2)}
+.foot a:hover{color:var(--gold)}
 
+@media(prefers-reduced-motion:reduce){
+  .js .reveal{opacity:1!important;transform:none!important;transition:none}
+  .fig .ln{stroke-dashoffset:0;transition:none}
+  .fig .fade{opacity:1;transition:none}
+  .hero-img::after{animation:none}
+}
 @media(max-width:700px){
   .page{padding:28px 18px 48px}
   body{font-size:16px}
   .sys-grid,.ba,.inc-grid,.cost-grid{grid-template-columns:1fr}
+  .ba-side+.ba-side{border-left:none;border-top:1px solid var(--line)}
   .counter-row{grid-template-columns:1fr 1fr 1fr;gap:8px}
-  .counter-num{font-size:1.9rem}
+  .counter-num{font-size:2rem}
   .hero-img,.book-wrap{margin-left:-18px;margin-right:-18px}
-  .cta-box{padding:30px 22px;margin:36px 0}
+  .cta-box{padding:32px 22px;margin:38px 0}
 }
 </style>
 </head>
@@ -193,10 +228,31 @@ strong{font-weight:700;color:var(--ink)}
 
 <div class="pullquote">А что, если всё это время решало не мышление, а тело? Каждый раз. За доли секунды до того, как вы успели подумать?</div>
 
+<!-- INFOGRAPHIC: реакция тела раньше мысли -->
+<div class="fig" id="figGap">
+  <div class="fig-title">Кто решает первым</div>
+  <svg viewBox="0 0 600 150" xmlns="http://www.w3.org/2000/svg">
+    <line class="ln" x1="40" y1="95" x2="560" y2="95" stroke="#7a6733" stroke-width="1.5"/>
+    <!-- node 1: тело -->
+    <circle class="fade s1" cx="120" cy="95" r="7" fill="#C9A24B"/>
+    <text class="fade s1" x="120" y="58" text-anchor="middle" fill="#E6C77E" font-family="'Courier Prime',monospace" font-size="13" letter-spacing="1">ТЕЛО РЕАГИРУЕТ</text>
+    <text class="fade s1" x="120" y="125" text-anchor="middle" fill="#9DB1D2" font-family="Manrope,sans-serif" font-size="11">гормоны, доли секунды</text>
+    <!-- gap -->
+    <line class="fade s2" x1="130" y1="95" x2="410" y2="95" stroke="#C9A24B" stroke-width="1.5" stroke-dasharray="4 5"/>
+    <rect class="fade s2" x="232" y="80" width="66" height="22" rx="11" fill="#0c1c38" stroke="#C9A24B" stroke-width="1"/>
+    <text class="fade s2" x="265" y="95" text-anchor="middle" fill="#E6C77E" font-family="'Courier Prime',monospace" font-size="12" dominant-baseline="middle">350 мс</text>
+    <!-- node 2: мысль -->
+    <circle class="fade s3" cx="420" cy="95" r="7" fill="#4F8BF0"/>
+    <text class="fade s3" x="420" y="58" text-anchor="middle" fill="#4F8BF0" font-family="'Courier Prime',monospace" font-size="13" letter-spacing="1">МЫСЛЬ ОБЪЯСНЯЕТ</text>
+    <text class="fade s3" x="420" y="125" text-anchor="middle" fill="#9DB1D2" font-family="Manrope,sans-serif" font-size="11">уже принятое решение</text>
+  </svg>
+  <div class="fig-cap">Тело принимает решение раньше, чем подключается сознание. Мысль приходит следом и оправдывает уже сделанный выбор.</div>
+</div>
+
 <div class="counter-row">
-  <div class="counter"><div class="counter-num">6</div><div class="counter-label">гормонов, которые<br>решают за вас</div></div>
-  <div class="counter"><div class="counter-num">4</div><div class="counter-label">денежных<br>архетипа</div></div>
-  <div class="counter"><div class="counter-num">30</div><div class="counter-label">дней, чтобы<br>сдвинуть потолок</div></div>
+  <div class="counter"><div class="counter-num" data-to="6">6</div><div class="counter-label">гормонов, которые<br>решают за вас</div></div>
+  <div class="counter"><div class="counter-num" data-to="4">4</div><div class="counter-label">денежных<br>архетипа</div></div>
+  <div class="counter"><div class="counter-num" data-to="30">30</div><div class="counter-label">дней, чтобы<br>сдвинуть потолок</div></div>
 </div>
 
 <div class="fomo">Те, кто прошли этот разбор, говорят одно: «Я годами работал не с тем. Я работал с головой, а держало тело.»</div>
@@ -211,6 +267,23 @@ strong{font-weight:700;color:var(--ink)}
 <p>Вы делаете рывок. Хороший месяц, крупная сделка, премия. А через два-три месяца деньги снова на привычном уровне. Будто внутри есть планка, к которой всё возвращается само.</p>
 
 <p>Это не слабая воля и не «не та ниша». У тела есть привычный диапазон, и оно защищает его так же, как защищает температуру и вес. Любой выход за рамки тело читает как угрозу и тихо возвращает вас обратно. Через тревогу, через «надо перестраховаться», через цену пониже.</p>
+
+<!-- INFOGRAPHIC: рывок и откат к планке -->
+<div class="fig" id="figCeil">
+  <div class="fig-title">Что происходит с доходом</div>
+  <svg viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg">
+    <!-- привычный уровень -->
+    <line class="fade s1" x1="40" y1="150" x2="560" y2="150" stroke="#4F8BF0" stroke-width="1.4" stroke-dasharray="5 5"/>
+    <text class="fade s1" x="44" y="142" fill="#4F8BF0" font-family="'Courier Prime',monospace" font-size="11" letter-spacing="1">ПРИВЫЧНЫЙ УРОВЕНЬ</text>
+    <!-- кривая дохода: рывок вверх и откат -->
+    <path class="ln" d="M40,150 L150,150 C200,150 205,55 270,52 C340,49 350,150 470,150 L560,150"
+          fill="none" stroke="#C9A24B" stroke-width="2.4"/>
+    <text class="fade s2" x="270" y="38" text-anchor="middle" fill="#E6C77E" font-family="'Courier Prime',monospace" font-size="12" letter-spacing="1">РЫВОК</text>
+    <text class="fade s3" x="455" y="178" text-anchor="middle" fill="#D08566" font-family="'Courier Prime',monospace" font-size="12" letter-spacing="1">ОТКАТ</text>
+    <circle class="fade s2" cx="270" cy="52" r="5" fill="#E6C77E"/>
+  </svg>
+  <div class="fig-cap">Рост случается, но без сдвига внутренней планки доход возвращается туда, где телу привычно.</div>
+</div>
 
 <div class="voice">«У вас есть внутри определённый уровень: мне можно вот столько. И тело очень аккуратно возвращает вас на него, что бы вы ни делали головой.»<span class="voice-attr">Из эфира «Биохимия денег»</span></div>
 
@@ -313,12 +386,12 @@ strong{font-weight:700;color:var(--ink)}
 </div>
 
 <div class="sys-grid">
-  <div class="sys-card"><div class="sys-num">Механизм 1</div><div class="sys-name">Кортизол</div><div class="sys-signals">Тревога, режим выживания, цена пониже «на всякий случай»</div><div class="sys-meta">Отключает стратегический мозг</div></div>
-  <div class="sys-card"><div class="sys-num">Механизм 2</div><div class="sys-name">Тестостерон</div><div class="sys-signals">Способность заявить о себе и назвать цену прямо</div><div class="sys-meta">Эффект победителя</div></div>
-  <div class="sys-card"><div class="sys-num">Механизм 3</div><div class="sys-name">Дофамин</div><div class="sys-signals">Мотивация, предвкушение, радость от результата</div><div class="sys-meta">Когда выгорел, деньги «и что»</div></div>
-  <div class="sys-card"><div class="sys-num">Механизм 4</div><div class="sys-name">Серотонин</div><div class="sys-signals">Внутренняя планка «сколько мне можно»</div><div class="sys-meta">90% рождается в кишечнике</div></div>
-  <div class="sys-card"><div class="sys-num">Механизм 5</div><div class="sys-name">Окситоцин</div><div class="sys-signals">Доверие, близость, способность получать и брать</div><div class="sys-meta">Щедрость работает на вас</div></div>
-  <div class="sys-card"><div class="sys-num">Механизм 6</div><div class="sys-name">Глюкоза и инсулин</div><div class="sys-signals">Топливо для стратегических решений</div><div class="sys-meta">Стабильность важнее «одного сахара»</div></div>
+  <div class="sys-card"><span class="sys-ico"><svg viewBox="0 0 24 24"><path d="M2 13h4l2-7 4 14 3-9 2 2h5"/></svg></span><div class="sys-num">Механизм 1</div><div class="sys-name">Кортизол</div><div class="sys-signals">Тревога, режим выживания, цена пониже «на всякий случай»</div><div class="sys-meta">Отключает стратегический мозг</div></div>
+  <div class="sys-card"><span class="sys-ico"><svg viewBox="0 0 24 24"><path d="M12 21V5"/><path d="M6 11l6-6 6 6"/></svg></span><div class="sys-num">Механизм 2</div><div class="sys-name">Тестостерон</div><div class="sys-signals">Способность заявить о себе и назвать цену прямо</div><div class="sys-meta">Эффект победителя</div></div>
+  <div class="sys-card"><span class="sys-ico"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></span><div class="sys-num">Механизм 3</div><div class="sys-name">Дофамин</div><div class="sys-signals">Мотивация, предвкушение, радость от результата</div><div class="sys-meta">Когда выгорел, деньги «и что»</div></div>
+  <div class="sys-card"><span class="sys-ico"><svg viewBox="0 0 24 24"><path d="M2 12h5l2-4 3 8 2-5 2 1h6"/></svg></span><div class="sys-num">Механизм 4</div><div class="sys-name">Серотонин</div><div class="sys-signals">Внутренняя планка «сколько мне можно»</div><div class="sys-meta">90% рождается в кишечнике</div></div>
+  <div class="sys-card"><span class="sys-ico"><svg viewBox="0 0 24 24"><circle cx="8.5" cy="12" r="5"/><circle cx="15.5" cy="12" r="5"/></svg></span><div class="sys-num">Механизм 5</div><div class="sys-name">Окситоцин</div><div class="sys-signals">Доверие, близость, способность получать и брать</div><div class="sys-meta">Щедрость работает на вас</div></div>
+  <div class="sys-card"><span class="sys-ico"><svg viewBox="0 0 24 24"><path d="M12 2l8 5v10l-8 5-8-5V7z"/></svg></span><div class="sys-num">Механизм 6</div><div class="sys-name">Глюкоза и инсулин</div><div class="sys-signals">Топливо для стратегических решений</div><div class="sys-meta">Стабильность важнее «одного сахара»</div></div>
 </div>
 
 <div class="sys-grid" style="grid-template-columns:1fr">
@@ -388,7 +461,7 @@ strong{font-weight:700;color:var(--ink)}
 <div class="sep"></div>
 
 <!-- CTA 1 -->
-<!-- TODO: заменить цену и ссылку payform на реальные -->
+<!-- TODO: заменить ссылку payform на реальную -->
 <div class="cta-box">
   <h2>«Механизмы сдвига»</h2>
   <div class="cta-price">590 &#8381;</div>
@@ -430,6 +503,9 @@ strong{font-weight:700;color:var(--ink)}
 </div>
 
 <script>
+document.documentElement.classList.add('js');
+
+// раскрытие FAQ
 document.querySelectorAll('.faq-item').forEach(item=>{
   item.querySelector('.faq-q').addEventListener('click',()=>{
     const wasOpen=item.classList.contains('open');
@@ -437,6 +513,38 @@ document.querySelectorAll('.faq-item').forEach(item=>{
     if(!wasOpen) item.classList.add('open');
   });
 });
+
+// проявление блоков на скролле + счётчики + инфографики
+var revSel='.pullquote,.counter-row,.fomo,h2,.cost-grid,.sys-grid,.inc-grid,.ba,.photo,.peek,.cta-box,.formula,.fig,.voice,.book-wrap,.not-list';
+document.querySelectorAll(revSel).forEach(function(e){e.classList.add('reveal');});
+
+function runCounters(row){
+  row.querySelectorAll('.counter-num').forEach(function(n){
+    var to=parseInt(n.dataset.to,10), t0=null, dur=1100;
+    function step(ts){
+      if(!t0)t0=ts;
+      var p=Math.min((ts-t0)/dur,1);
+      n.textContent=Math.round(to*(1-Math.pow(1-p,3)));
+      if(p<1)requestAnimationFrame(step); else n.textContent=to;
+    }
+    requestAnimationFrame(step);
+  });
+}
+
+if('IntersectionObserver' in window){
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){
+        en.target.classList.add('in');
+        if(en.target.classList.contains('counter-row')) runCounters(en.target);
+        io.unobserve(en.target);
+      }
+    });
+  },{threshold:.18});
+  document.querySelectorAll('.reveal').forEach(function(e){io.observe(e);});
+}else{
+  document.querySelectorAll('.reveal').forEach(function(e){e.classList.add('in');});
+}
 </script>
 </body>
 </html>
